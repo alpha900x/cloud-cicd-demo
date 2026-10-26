@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud CI/CD Mini Project</title>
+  <meta name="description" content="A static site deployed automatically through a GitHub Actions CI/CD pipeline." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <h1>Cloud CI/CD Mini Project</h1>
+    <p>A static site that is tested, built and deployed to the cloud automatically on every <code>git push</code>.</p>
+  </header>
+
+  <main>
+    <section id="models">
+      <h2>Cloud service models: who manages what?</h2>
+      <p class="hint">Green = managed by the cloud provider. Orange = managed by you.</p>
+      <div class="table-wrap">
+        <table id="models-table" aria-label="Responsibility matrix for cloud service models"></table>
+      </div>
+    </section>
+
+    <section id="calculator">
+      <h2>VM monthly cost estimator</h2>
+      <p class="hint">Uses an illustrative price list, not a real provider's pricing.</p>
+      <form id="cost-form" novalidate>
+        <label>vCPUs <input type="number" name="vcpus" min="0" value="2" required /></label>
+        <label>RAM (GB) <input type="number" name="ramGb" min="0" value="4" required /></label>
+        <label>Storage (GB) <input type="number" name="storageGb" min="0" value="50" required /></label>
+        <label>Hours / month <input type="number" name="hoursPerMonth" min="0" max="744" value="730" required /></label>
+        <button type="submit">Estimate</button>
+      </form>
+      <p id="cost-error" class="error" role="alert"></p>
+      <dl id="cost-result" hidden>
+        <div><dt>Compute</dt><dd id="r-compute"></dd></div>
+        <div><dt>Memory</dt><dd id="r-memory"></dd></div>
+        <div><dt>Storage</dt><dd id="r-storage"></dd></div>
+        <div class="total"><dt>Total / month</dt><dd id="r-total"></dd></div>
+      </dl>
+    </section>
+
+    <section id="pipeline">
+      <h2>The pipeline behind this page</h2>
+      <ol class="steps">
+        <li><strong>Push</strong> code to the <code>main</code> branch</li>
+        <li><strong>Test</strong> unit tests run on GitHub's servers</li>
+        <li><strong>Build</strong> the site is assembled into <code>dist/</code></li>
+        <li><strong>Deploy</strong> the artifact is published to GitHub Pages</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p id="build-info">Build info loading&hellip;</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
